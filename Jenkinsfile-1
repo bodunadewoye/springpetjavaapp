@@ -1,0 +1,17 @@
+pipeline {
+    agent all
+    tools {maven 'maven'}
+
+    stages {
+        stage("sonarqube testing") {
+           steps {
+             script {
+                withSonarQubeEnv('sonar') {
+                    sh 'mvn clean sonar:sonar'
+               
+                 }
+              }
+           }
+        }
+    }
+}
